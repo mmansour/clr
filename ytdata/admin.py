@@ -7,14 +7,23 @@ from mezzanine.core.admin import DisplayableAdmin
 class YouTuberAdmin(DisplayableAdmin):
 
     fieldsets = [
-        ("YouTuber",                 {'fields': ['title','youtube_channel','youtube_video_id','youtube_network','youtube_views',
-                                                 'youtube_subscribers','facebook_likes','twitter_followers',
-                                                 'shares','youtube_thumbnail_url',]}),
+        ("YouTuber",                 {'fields': ['title']}),
+        ("Status",      {'fields': ['status']}),
         ("Published Date",        {'fields': ['publish_date']}),
-        ("Published Status",      {'fields': ['status']}),
+        ("YouTube Data",                 {'fields': ['youtube_channel','youtube_video_id',
+                                                 'youtube_network',
+                                                 'youtube_total_uploaded_views',
+                                                 'youtube_channel_views',
+                                                 'youtube_subscribers',
+                                                 'shares','youtube_thumbnail_url',
+                                                 'facebook_shares','twitter_shares',
+                                                 'facebook_likes','twitter_followers'
+        ]}),
     ]
 
-    list_display = ('title', 'status', 'publish_date', 'youtube_channel','facebook_likes', 'twitter_followers')
+    list_display = ('title', 'status', 'publish_date',
+                    'youtube_total_uploaded_views'
+        )
     list_editable = ('status',)
     list_filter = ['title', 'status','publish_date']
     search_fields = ['title',]
