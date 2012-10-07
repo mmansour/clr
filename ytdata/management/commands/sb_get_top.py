@@ -24,23 +24,23 @@ class Command(BaseCommand):
             row = tr.findAll('a',text=True)
             
             if row_count > 2:
-################ GET TOP 100 # OF SUBSCIBERS
-                yt, created = YouTuber.objects.get_or_create(title=str(row[2]), youtube_subscribers=int(row[3].replace(',','')))
-                print row[2]
+################# GET TOP 100 # OF SUBSCIBERS
+#                yt, created = YouTuber.objects.get_or_create(title=str(row[2]), youtube_subscribers=int(row[3].replace(',','')))
+#                print row[2]
 
 
-################# GET TOP 100 # OF TOTAL CHANNEL VIEWS
-#                try:
-#                    yt = YouTuber.objects.get(title=str(row[6]))
-#                    yt.youtube_total_uploaded_views=int(row[7].replace(',',''))
-#                    yt.save()
-#                except YouTuber.DoesNotExist:
-#                    yt = YouTuber(title=str(row[6]),
-#                          youtube_total_uploaded_views=int(row[7].replace(',','')),
-#                          status=2
-#                    )
-#                    yt.save()
-#                print row[6]
+################ GET TOP 100 # OF TOTAL CHANNEL VIEWS
+                try:
+                    yt = YouTuber.objects.get(title=str(row[6]))
+                    yt.youtube_total_uploaded_views=int(row[7].replace(',',''))
+                    yt.save()
+                except YouTuber.DoesNotExist:
+                    yt = YouTuber(title=str(row[6]),
+                          youtube_total_uploaded_views=int(row[7].replace(',','')),
+                          status=2
+                    )
+                    yt.save()
+                print row[6]
 
 
         
