@@ -4,6 +4,7 @@ import requests
 import pprint
 import json
 import datetime
+from settings import YOUTUBE_API_KEY
 
 class Command(BaseCommand):
     help = 'Pulls most subscribed channels from youtube'
@@ -11,9 +12,9 @@ class Command(BaseCommand):
 
         payload = {
             'v':'2',
-            'key': 'AI39si6iPjtPqQVnI5NEVOqo28NnV-Xzojm58Ui7BKU9-XmXDHr80YhCeXKyViIoDTEwgQz5C4VcNd7Qd-vMPItVh73HUEeAwA',
+            'key': YOUTUBE_API_KEY,
             'alt':'json',
-            'q':'RayWilliamJohnson'
+#            'q':'RayWilliamJohnson'
         }
         most_subscribed = requests.get("https://gdata.youtube.com/feeds/api/channels", params=payload)
 #        pprint.pprint(most_subscribed.text)

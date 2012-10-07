@@ -23,10 +23,10 @@ class Command(BaseCommand):
             row_count += 1
             row = tr.findAll('a',text=True)
             
-#            if row_count > 2:
-################# GET TOP 100 # OF SUBSCIBERS
-#                yt, created = YouTuber.objects.get_or_create(title=str(row[2]), youtube_subscribers=int(row[3].replace(',','')))
-#                print row[2]
+            if row_count > 2:
+################ GET TOP 100 # OF SUBSCIBERS
+                yt, created = YouTuber.objects.get_or_create(title=str(row[2]), youtube_subscribers=int(row[3].replace(',','')))
+                print row[2]
 
 
 ################# GET TOP 100 # OF TOTAL CHANNEL VIEWS
