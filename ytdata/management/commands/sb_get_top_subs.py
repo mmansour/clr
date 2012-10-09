@@ -2,11 +2,6 @@ from django.core.management.base import BaseCommand, CommandError
 from BeautifulSoup import BeautifulSoup
 from ytdata.models import YouTuber
 import urllib2
-import csv
-import re
-import time
-import pprint
-from urlparse import urlparse
 from settings import TOP_100_URL
 
 class Command(BaseCommand):

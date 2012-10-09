@@ -44,7 +44,16 @@ class YouTuber(Displayable):
     facebook_shares = models.BigIntegerField(verbose_name="Facebook Shares", blank=True, null=True)
     twitter_shares = models.BigIntegerField(verbose_name="Twitter Shares", blank=True, null=True)
     shares = models.BigIntegerField(verbose_name="Twitter followers", blank=True, null=True)
-    
+
+    facebook_url = models.CharField(max_length=200, verbose_name="Facebook Url", blank=True, null=True)
+    facebook_verified = models.BooleanField(default=False, verbose_name="Facebook URL Verified ?")
+
+    twitter_url = models.CharField(max_length=200, verbose_name="Twitter Url", blank=True, null=True)
+    twitter_verified = models.BooleanField(default=False, verbose_name="Twitter URL Verified ?")
+
+    facebook_error = models.CharField(max_length=200, verbose_name="Facebook Error", blank=True, null=True)
+    twitter_error = models.CharField(max_length=200, verbose_name="Twitter Error", blank=True, null=True)
+
     address1 = models.CharField(max_length=400, verbose_name="Address 1", blank=True, null=True)
     city = models.CharField(max_length=100, verbose_name="City", blank=True, null=True)
     state_province_code = models.CharField(max_length=40, verbose_name="State Province Code", blank=True, null=True)

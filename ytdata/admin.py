@@ -16,15 +16,20 @@ class YouTuberAdmin(DisplayableAdmin):
                                                  'youtube_channel_views',
                                                  'youtube_subscribers',
                                                  'shares','youtube_thumbnail_url',
-                                                 'facebook_shares','twitter_shares',
-                                                 'facebook_likes','twitter_followers'
+                                                 'facebook_url','twitter_url',
+                                                 'facebook_verified','twitter_verified',
+                                                 'facebook_likes','twitter_followers',
+
         ]}),
     ]
 
     list_display = ('title', 'status', 'publish_date',
-                    'youtube_total_uploaded_views'
+                    'youtube_subscribers', 'youtube_total_uploaded_views',
+                    'facebook_verified', 'twitter_verified',
+                    'facebook_url','twitter_url',
         )
-    list_editable = ('status',)
+    list_editable = ('status', 'facebook_verified', 'twitter_verified',
+                    'facebook_url','twitter_url',)
     list_filter = ['title', 'status','publish_date']
     search_fields = ['title',]
     date_hierarchy = 'publish_date'
