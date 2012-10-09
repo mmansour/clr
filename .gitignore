@@ -18,4 +18,4 @@ notes/
 log/
 migrations/
 static/media/
-!clips/urls.py
+!ytdata/urls.py
