@@ -19,7 +19,6 @@ class YouTuberAdmin(DisplayableAdmin):
                                                  'facebook_url','twitter_url',
                                                  'facebook_verified','twitter_verified',
                                                  'facebook_likes','twitter_followers',
-
         ]}),
     ]
 
