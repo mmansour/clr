@@ -21,6 +21,7 @@
     <table>
     <thead>
         <tr>
+            <th>#</th>
             <th>YouTuber</th>
             <th>Total Subscribers</th>
             <th>Total Views</th>
@@ -31,6 +32,7 @@
     <tbody>
     {% for youtuber in top_ten_subs %}
         <tr>
+            <td>{{ forloop.counter }}: </td>
             <td>{{ youtuber.title }}</td>
             <td>{{ youtuber.youtube_subscribers|intcomma }}</td>
             <td>{{ youtuber.youtube_total_uploaded_views|intcomma }}</td>
