@@ -4,6 +4,7 @@ from ytdata.models import YouTuber
 import urllib2
 import re
 import time
+import datetime
 from settings import TOP_100_URL
 from urlparse import urlparse
 import pprint
@@ -23,10 +24,11 @@ class Command(BaseCommand):
             datasource=urllib2.urlopen('http://www.youtube.com/profile?user=%s' % u.title)
             datasoup=BeautifulSoup(datasource.read())
             
-#           ########## GET SUBS AND VIEWS
+#           ########## UPDATE DATE, SUBS, AND VIEWS
             stats_div = datasoup.findAll('div',{'class':'header-stats'})
             stats_data = stats_div[0].findAll('span',text=True)
             add_stats = YouTuber.objects.get(title=u.title)
+            add_stats.publish_date = datetime.datetime.now()
             add_stats.youtube_subscribers = int(stats_data[2].replace(',',''))
             add_stats.youtube_total_uploaded_views = int(stats_data[8].replace(',',''))
             add_stats.save()
