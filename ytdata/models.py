@@ -64,10 +64,8 @@ class YouTuber(Displayable):
     longitude = models.CharField(max_length=40, verbose_name="Longitude", blank=True, null=True)
     point = models.PointField(null=True, blank=True)
     geomanager = models.GeoManager()
-#    history = HistoricalRecords()
     search_fields = {"title":10, "youtube_channel":10}
 
-    
     @models.permalink
     def get_absolute_url(self):
         return ('ytdata.views.detail', [self.slug, self.id])
@@ -78,4 +76,14 @@ class YouTuber(Displayable):
 
     def __unicode__(self):
         return self.title
+
+
+class YouTuberHistory(models.Model):
+    youtuber = models.ForeignKey('YouTuber')
+    archive_date = models.DateTimeField(_("Archived on"), blank=True, null=True)
+    youtube_subscribers = models.BigIntegerField(verbose_name="Youtube Subscribers", blank=True, null=True)
+    youtube_total_uploaded_views = models.BigIntegerField(verbose_name="Youtube Total Uploaded Views", blank=True, null=True)
+    facebook_likes = models.BigIntegerField(verbose_name="Facebook likes", blank=True, null=True)
+    twitter_followers = models.BigIntegerField(verbose_name="Twitter followers", blank=True, null=True)
+
 
