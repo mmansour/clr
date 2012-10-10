@@ -34,6 +34,13 @@ def yt_stats_landing(request):
                         context_instance=RequestContext(request))
 
 
+def yt_top_ten_viewed(request):
+    top_ten_viewed = YouTuber.objects.filter(status=2).order_by('-youtube_total_uploaded_views')[:10]
+    return render_to_response('pages/yt-top-ten-viewed-channels.html',
+                       {'top_ten_viewed':top_ten_viewed},
+                        context_instance=RequestContext(request))
+
+
 def yt_top_ten_subs(request):
     top_ten_subs = YouTuber.objects.filter(status=2).order_by('-youtube_subscribers')[:10]
     return render_to_response('pages/yt-top-ten-subs.html',

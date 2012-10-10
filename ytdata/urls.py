@@ -11,8 +11,8 @@ urlpatterns = patterns('ytdata.views',
     (r'^youtube-top-50-subscribed-channels/$', 'yt_top_fifty_subs'),
     (r'^youtube-top-100-subscribed-channels/$', 'yt_top_hundred_subs'),
 
-    (r'^youtube-stats/$', 'yt_stats_landing'),
+    (r'^youtube-top-10-viewed-channels/$', 'yt_top_ten_viewed'),
 
-#    (r'^(?P<pageslug>[\w-]+)-(?P<hotelid>.*)/$', 'detail'),
+    (r'^youtube-stats/$', 'yt_stats_landing'),
 )
 
