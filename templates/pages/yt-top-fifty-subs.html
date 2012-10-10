@@ -30,6 +30,7 @@
     </thead>
     <tbody>
     {% for youtuber in top_fifty_subs %}
+        {% if youtuber.youtube_subscribers %}
         <tr>
             <td>{{ forloop.counter }}: </td>
             <td><a href="{{ youtuber.get_absolute_url }}">{{ youtuber.title }}</a></td>
@@ -38,6 +39,7 @@
             <td>{% if youtuber.facebook_likes %}{{ youtuber.facebook_likes|intcomma }}{% else %}N/A{% endif %}</td>
             <td>{% if youtuber.twitter_followers %}{{ youtuber.twitter_followers|intcomma }}{% else %}N/A{% endif %}</td>
         </tr>
+        {% endif %}
     {% endfor %}
     </tbody>
     </table>
