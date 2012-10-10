@@ -4,9 +4,15 @@ from django.template import RequestContext
 from django.http import HttpResponse, Http404, HttpResponsePermanentRedirect
 
 def home(request):
-#    top_ten_subs = YouTuber.objects.filter(status=2).order_by('-youtube_subscribers')[:10]
+    top_three_most_subs = YouTuber.objects.filter(status=2).order_by('-youtube_subscribers')[:3]
+    top_three_most_viewed = YouTuber.objects.filter(status=2).order_by('-youtube_total_uploaded_views')[:3]
+    top_three_featured = YouTuber.objects.filter(status=2).filter(is_featured=True)[:3]
+
+
     return render_to_response('index.html',
-                       {},
+                       {'top_three_most_subs':top_three_most_subs,
+                        'top_three_most_viewed':top_three_most_viewed,
+                        'top_three_featured':top_three_featured,},
                         context_instance=RequestContext(request))
 
 
@@ -17,8 +23,6 @@ def detail(request, pageslug, userid):
     else:
        return render_to_response('pages/youtuber-detail.html', {'theyoutuber':theyoutuber,},
                                   context_instance=RequestContext(request))
-
-
 
 
 def yt_stats_landing(request):
