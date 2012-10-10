@@ -12,6 +12,7 @@ urlpatterns = patterns('ytdata.views',
     (r'^youtube-top-100-subscribed-channels/$', 'yt_top_hundred_subs'),
 
     (r'^youtube-top-10-viewed-channels/$', 'yt_top_ten_viewed'),
+    (r'^youtube-top-50-viewed-channels/$', 'yt_top_fifty_viewed'),
 
     (r'^youtube-stats/$', 'yt_stats_landing'),
 )
