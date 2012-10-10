@@ -67,9 +67,9 @@ class YouTuber(Displayable):
     search_fields = {"title":10, "youtube_channel":10}
 
     
-#    @models.permalink
-#    def get_absolute_url(self):
-#        return ('gohotels.views.detail', [self.slug, self.hotelid])
+    @models.permalink
+    def get_absolute_url(self):
+        return ('ytdata.views.detail', [self.slug, self.id])
 
 #    def save(self, *args, **kwargs):
 #        self.point = Point(float(self.longitude), float(self.latitude))
