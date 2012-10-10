@@ -47,7 +47,8 @@ class YouTuber(Displayable):
 
     facebook_url = models.CharField(max_length=200, verbose_name="Facebook Url", blank=True, null=True)
     facebook_verified = models.BooleanField(default=False, verbose_name="Facebook URL Verified ?")
-
+    is_featured = models.BooleanField(default=False, verbose_name="Featured Channel ?")
+    
     twitter_url = models.CharField(max_length=200, verbose_name="Twitter Url", blank=True, null=True)
     twitter_verified = models.BooleanField(default=False, verbose_name="Twitter URL Verified ?")
 
