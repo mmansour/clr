@@ -14,7 +14,7 @@
 
 {% block main %}
     {% if top_three_featured %}
-    <h3>{% trans "Top Three Featured Youtube Channels" %}</h3>
+    <h3>{% trans "Featured Youtube Channels" %}</h3>
     <table class="table table-striped">
     <thead>
         <tr>
@@ -27,7 +27,7 @@
         </tr>
     </thead>
     <tbody>
-    {% for youtuber in top_three_most_subs %}
+    {% for youtuber in top_three_featured %}
         <tr>
             <td>{{ forloop.counter }}: </td>
             <td><a href="{{ youtuber.get_absolute_url }}">{{ youtuber.title }}</a></td>
