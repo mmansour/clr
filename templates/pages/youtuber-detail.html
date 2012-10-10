@@ -17,12 +17,39 @@
 
 {% block main %}
 {#{% trans "I is the youtuber detail page." %}#}
-{#<h2>{{ theyoutuber.title }} at a glance</h2>#}
+<h3>Today's {{ theyoutuber.title }} stats at a glance</h3>
  <ul>
      <li>Channel Subscribers: {{ theyoutuber.youtube_subscribers|intcomma }}</li>
      <li>Total Views (All Videos): {{ theyoutuber.youtube_total_uploaded_views|intcomma }}</li>
      <li>Facebook Likes: {{ theyoutuber.facebook_likes|intcomma }}</li>
      <li>Twitter Followers: {{ theyoutuber.twitter_followers|intcomma }}</li>
  </ul>
+
+<h3>One month history for {{ theyoutuber.title }}'s channel</h3>
+
+ <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Total Subscribers</th>
+            <th>Total Views</th>
+            <th>Total Facebook Likes</th>
+            <th>Total Twitter Followers</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for stats in channel_history %}
+{#        {% if stats.channel_history %}#}
+        <tr>
+            <td>{{ stats.archive_date|date:"M d Y" }}</td>
+            <td>{{ stats.youtube_subscribers|intcomma }}</td>
+            <td>{{ stats.youtube_total_uploaded_views|intcomma }}</td>
+            <td>{% if stats.facebook_likes %}{{ stats.facebook_likes|intcomma }}{% else %}N/A{% endif %}</td>
+            <td>{% if stats.twitter_followers %}{{ stats.twitter_followers|intcomma }}{% else %}N/A{% endif %}</td>
+        </tr>
+{#        {% endif %}#}
+    {% endfor %}
+    </tbody>
+    </table>
 
 {% endblock %}

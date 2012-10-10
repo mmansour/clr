@@ -1,7 +1,8 @@
-from ytdata.models import YouTuber
+from ytdata.models import YouTuber, YouTuberHistory
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from django.template import RequestContext
 from django.http import HttpResponse, Http404, HttpResponsePermanentRedirect
+
 
 def home(request):
     top_three_most_subs = YouTuber.objects.filter(status=2).order_by('-youtube_subscribers')[:3]
@@ -16,10 +17,13 @@ def home(request):
 
 def detail(request, pageslug, userid):
     theyoutuber = get_object_or_404(YouTuber, id=userid)
+    channel_history = YouTuberHistory.objects.filter(youtuber=userid).order_by('-archive_date')[:31]
     if pageslug != theyoutuber.slug:
        return HttpResponsePermanentRedirect(theyoutuber.get_absolute_url())
     else:
-       return render_to_response('pages/youtuber-detail.html', {'theyoutuber':theyoutuber,},
+       return render_to_response('pages/youtuber-detail.html',
+               {'theyoutuber':theyoutuber,
+                'channel_history':channel_history},
                                   context_instance=RequestContext(request))
 
 
