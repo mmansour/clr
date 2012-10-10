@@ -48,3 +48,10 @@ def yt_top_fifty_subs(request):
                         context_instance=RequestContext(request))
 
 
+def yt_top_hundred_subs(request):
+    top_hundred_subs = YouTuber.objects.filter(status=2).order_by('-youtube_subscribers')[:100]
+    return render_to_response('pages/yt-top-hundred-subs.html',
+                       {'top_hundred_subs':top_hundred_subs},
+                        context_instance=RequestContext(request))
+
+
