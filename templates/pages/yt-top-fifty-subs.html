@@ -3,16 +3,16 @@
 {% load i18n %}
 
 {% block meta_title %}
-    YouTube Top 10 Most Subscribed Channel Stats
+    YouTube Top 50 Most Subscribed Channel Stats
 {% endblock %}
 
 {% block title %}
-{#    YouTube Top 10 Most Subscribed Channel Stats#}
+{#    YouTube Top 50 Most Subscribed Channel Stats#}
 {% endblock %}
 
 {% block extra_breadcrumb %}
 <li><a href="/youtube-stats/">YouTube Statistics</a><span class="divider">/</span></li>
-<li class="active">{% trans "Top Ten Most Subscribed YouTube Channels" %}</li>
+<li class="active">{% trans "Top Fifty Most Subscribed YouTube Channels" %}</li>
 {% endblock %}
 
 {% block main %}
@@ -29,7 +29,7 @@
         </tr>
     </thead>
     <tbody>
-    {% for youtuber in top_ten_subs %}
+    {% for youtuber in top_fifty_subs %}
         <tr>
             <td>{{ forloop.counter }}: </td>
             <td>{{ youtuber.title }}</td>
