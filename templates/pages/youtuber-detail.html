@@ -25,7 +25,7 @@
      <li>Twitter Followers: {{ theyoutuber.twitter_followers|intcomma }}</li>
  </ul>
 
-{% if stats.channel_history %}
+{#{% if stats.channel_history %}#}
 <h3>One month history for {{ theyoutuber.title }}'s channel</h3>
  <table class="table table-striped">
     <thead>
@@ -49,6 +49,6 @@
     {% endfor %}
     </tbody>
     </table>
-{% endif %}
+{#{% endif %}#}
     
 {% endblock %}

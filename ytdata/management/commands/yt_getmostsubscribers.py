@@ -16,6 +16,8 @@ class Command(BaseCommand):
             'alt':'json',
 #            'q':'RayWilliamJohnson'
         }
+
+#        http://gdata.youtube.com/feeds/api/users/RayWilliamJohnson?v=2 #### Gets User Profile
         most_subscribed = requests.get("https://gdata.youtube.com/feeds/api/channels", params=payload)
 #        pprint.pprint(most_subscribed.text)
         jr = json.loads(most_subscribed.text)
