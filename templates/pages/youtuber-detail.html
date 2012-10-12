@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load humanize %}
 {% load i18n %}
+{% load tz %}
+
 
 {% block meta_title %}
     {{ theyoutuber.title }} YouTube Channel
@@ -17,7 +19,7 @@
 
 {% block main %}
 
-<h3>Today's {{ theyoutuber.title }} stats at a glance</h3>
+<h3>{{ theyoutuber.title }}'s stats at a glance as of {{ theyoutuber.publish_date|timezone:"America/Los_Angeles" }} PST</h3>
  <ul>
      <li>Channel Subscribers: {{ theyoutuber.youtube_subscribers|intcomma }}</li>
      <li>Total Views (All Videos): {{ theyoutuber.youtube_total_uploaded_views|intcomma }}</li>
