@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load humanize %}
 {% load i18n %}
+{% load tz %}
+
 
 {% block meta_title %}
     YouTube Top 10 Most Viewed Channels
@@ -16,7 +18,7 @@
 {% endblock %}
 
 {% block main %}
-{#{% trans "This is the top ten page baby." %}#}
+    <h3>{% trans "YouTube Top 10 Most Viewed Channels as of " %}{{ top_ten_viewed.0.publish_date|timezone:"America/Los_Angeles" }} PST</h3>
     <table class="table table-striped">
     <thead>
         <tr>

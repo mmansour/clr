@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load humanize %}
 {% load i18n %}
+{% load tz %}
+
 
 {% block meta_title %}
     YouTube Top 100 Most Subscribed Channel Stats
@@ -16,7 +18,7 @@
 {% endblock %}
 
 {% block main %}
-{#{% trans "This is the top ten page baby." %}#}
+    <h3>{% trans "YouTube Top 100 Most Subscribed Channels as of " %}{{ top_hundred_subs.0.publish_date|timezone:"America/Los_Angeles" }} PST</h3>
     <table class="table table-striped">
     <thead>
         <tr>
