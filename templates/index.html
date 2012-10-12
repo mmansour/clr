@@ -15,7 +15,7 @@
 
 {% block main %}
     {% if top_three_featured %}
-    <h3>{% trans "Featured Youtube Channels" %} / {{ top_three_featured.0.publish_date|utc }} PST</h3>
+    <h3>{% trans "Featured Youtube Channels" %} / {{ top_three_featured.0.publish_date|timezone:"America/Los_Angeles" }} PST</h3>
     <table class="table table-striped">
     <thead>
         <tr>
@@ -42,7 +42,7 @@
     </table>
     {% endif %}
 
-    <h3>{% trans "Top Three Most Subscribed Youtube Channels" %} / {{ top_three_most_subs.0.publish_date|utc}} PST</h3>
+    <h3>{% trans "Top Three Most Subscribed Youtube Channels" %} / {{ top_three_most_subs.0.publish_date|timezone:"America/Los_Angeles"  }} PST</h3>
     <table class="table table-striped">
     <thead>
         <tr>
@@ -70,7 +70,7 @@
 
     <h5><a href='/youtube-stats/'>{% trans "More YouTube Stats" %}</a></h5>
 
-    <h3>{% trans "Top Three Most Viewed Youtube Channels" %} / {{ top_three_most_viewed.0.publish_date|utc}} PST</h3>
+    <h3>{% trans "Top Three Most Viewed Youtube Channels" %} / {{ top_three_most_viewed.0.publish_date|timezone:"America/Los_Angeles"  }} PST</h3>
     <table class="table table-striped">
     <thead>
         <tr>
