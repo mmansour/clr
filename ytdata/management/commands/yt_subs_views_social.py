@@ -5,14 +5,14 @@ import urllib2
 import re
 import time
 import datetime
-from settings import TOP_100_URL
+from settings import TOP_100_URL, UA
+import requests
 from urlparse import urlparse
 import pprint
 
 class Command(BaseCommand):
     help = 'Pulls stats from youtube'
     def handle(self, *args, **options):
-
         social_data_dict = {}
         socialkeywords = ['facebook', 'twitter']
         exactMatch = re.compile(r'\b%s\b' % '\\b|\\b'.join(socialkeywords), flags=re.IGNORECASE)
@@ -21,8 +21,9 @@ class Command(BaseCommand):
         yt = YouTuber.objects.filter(status=2)
         for u in yt:
             time.sleep(1)
-            datasource=urllib2.urlopen('http://www.youtube.com/profile?user=%s' % u.title)
-            datasoup=BeautifulSoup(datasource.read())
+            datasource=requests.get('http://www.youtube.com/profile?user=%s' % u.title, headers=UA)
+#            datasource=urllib2.urlopen('http://www.youtube.com/profile?user=%s' % u.title)
+            datasoup=BeautifulSoup(datasource.text)
             
 #           ########## UPDATE DATE, SUBS, AND VIEWS
             stats_div = datasoup.findAll('div',{'class':'header-stats'})

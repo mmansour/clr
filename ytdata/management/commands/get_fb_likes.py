@@ -2,7 +2,9 @@ from django.core.management.base import BaseCommand, CommandError
 from BeautifulSoup import BeautifulSoup
 from ytdata.models import YouTuber
 import urllib2
+import requests
 import time
+from settings import UA
 
 class Command(BaseCommand):
     help = 'Get all facebook likes'
@@ -18,9 +20,9 @@ class Command(BaseCommand):
                     clean_url = 'http://{0}'.format(user.facebook_url)
                 else:
                     clean_url = user.facebook_url
-
-                fbpage=urllib2.urlopen(clean_url)
-                fbsoup=BeautifulSoup(fbpage.read())
+                fbpage=requests.get(clean_url, headers=UA)
+#                fbpage=urllib2.urlopen(clean_url)
+                fbsoup=BeautifulSoup(fbpage.text)
                 fbsociallink=fbsoup.findAll('meta',{'name':'description'})
                 fbdigitlist = [s for s in fbsociallink[0]['content'].split()
                                     if s.replace(",","").isdigit()]

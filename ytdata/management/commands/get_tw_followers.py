@@ -4,6 +4,8 @@ from ytdata.models import YouTuber
 import urllib2
 import time
 import httplib
+import requests
+from settings import UA
 
 
 class Command(BaseCommand):
@@ -22,8 +24,9 @@ class Command(BaseCommand):
                 if twitcleanurl[:4] != 'http':
                     twitcleanurl = 'http://{0}'.format(twitcleanurl)
 
-                twitpage=urllib2.urlopen(twitcleanurl)
-                twitsoup=BeautifulSoup(twitpage.read())
+                twitpage=requests.get(twitcleanurl, headers=UA)
+#                twitpage=urllib2.urlopen(twitcleanurl)
+                twitsoup=BeautifulSoup(twitpage.text)
                 twitsocialdata=twitsoup.findAll('a',{'data-nav':'followers'})
     #                print k, twitsociallink[0].findAll(text=True)[1], twitsociallink[0].findAll(text=True)[2]
                 twitfollowers = [f.findAll(text=True) for f in twitsocialdata]
