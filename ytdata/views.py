@@ -17,7 +17,7 @@ def home(request):
 
 def detail(request, pageslug, userid):
     theyoutuber = get_object_or_404(YouTuber, id=userid)
-    channel_history = YouTuberHistory.objects.filter(youtuber=userid).order_by('-archive_date')[:31]
+    channel_history = YouTuberHistory.objects.filter(youtuber=userid).order_by('archive_date')[:31]
     if pageslug != theyoutuber.slug:
        return HttpResponsePermanentRedirect(theyoutuber.get_absolute_url())
     else:
