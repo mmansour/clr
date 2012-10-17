@@ -27,8 +27,16 @@ class Command(BaseCommand):
 #        pprint.pprint(jr['feed']['entry'])
 
         for m in jr['feed']['entry']:
-#            print pprint.pprint(m['media$group']['media$title']['$t'])
-            print pprint.pprint(m['media$group'])
+#            m['media$group']['media$title']
+#            m['media$group']['yt$uploaded']) #date
+#            m['media$group']['media$credit'] #list
+#            m['media$group']['media$description']
+#            m['media$group']['media$content'] #list the actual movie
+#            m['media$group']['media$thumbnail'] #list thumnails & "name":default
+#            m['media$group']['media$rating'] #list rating try for KeyError
+#            m['media$group']['media$player']['url']
+#            m['media$group']['media$restriction'] #list restriction try for KeyError
+            print pprint.pprint(m['media$group']['yt$videoid']['$t'])
 
 
 #
