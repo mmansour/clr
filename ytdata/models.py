@@ -87,3 +87,29 @@ class YouTuberHistory(models.Model):
     twitter_followers = models.BigIntegerField(verbose_name="Twitter followers", blank=True, null=True)
 
 
+class YouTubeMovie(models.Model):
+    movie_title = models.CharField(max_length=400, verbose_name="Movie Title", blank=True, null=True)
+    movie_direct_url = models.CharField(max_length=400, verbose_name="Movie Direct Url", blank=True, null=True)
+    movie_youtube_url = models.CharField(max_length=400, verbose_name="Movie YouTube Url", blank=True, null=True)
+    movie_thumbmail_url = models.CharField(max_length=400, verbose_name="Thumbnail", blank=True, null=True)
+    movie_parental_rating = models.CharField(max_length=400, verbose_name="Parental Rating", blank=True, null=True)
+    movie_restrictions = models.CharField(max_length=400, verbose_name="Movie Restrictions", blank=True, null=True)
+    movie_uploaded_date = models.DateTimeField(_("Upload Date"), blank=True, null=True)
+    movie_credits = RichTextField(blank=True)
+    movie_description = RichTextField(blank=True)
+    view_count = models.BigIntegerField(verbose_name="View Count", blank=True, null=True)
+    voter_rated = models.IntegerField(verbose_name="Rating", blank=True, null=True)
+    number_of_voters = models.IntegerField(verbose_name="Number of Voters for Rating", blank=True, null=True)
+    comment_count = models.IntegerField(verbose_name="Number of Comments", blank=True, null=True)
+    youtuber = models.ForeignKey('YouTuber', blank=True, null=True)
+
+#    @models.permalink
+#    def get_absolute_url(self):
+#        return ('battles.views.detail', [self.slug, self.video_youtube_id])
+
+    def __unicode__(self):
+        return self.movie_title
+
+
+
+
