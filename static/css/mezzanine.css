@@ -38,6 +38,14 @@ footer .separator {opacity:0.3; margin:0 10px;}
 .pagination {margin:40px 0;}
 .pagination p {float:left;}
 
+#movie-list h4{float:left; clear:both; margin: 17px 0 7px 0}
+#movie-list img{float:left; clear:both; margin: 7px 7px 0 0}
+#movie-list p{background:none; width:470px; height: 103px; margin: 51px 0 0 0; padding: 7px 0 0 0;
+border-bottom:1px solid #ccc;}
+#movie-list li {line-height:0; display: inline;}
+#movie-list ul {margin: 0; padding: 0}
+.movie-watch-links{float:right; margin: 17px 0 0 0; display:block;}
+
 
 /* Forms */
 .control-group label {font-weight:bold; margin-bottom:3px;}

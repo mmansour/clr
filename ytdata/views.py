@@ -1,4 +1,4 @@
-from ytdata.models import YouTuber, YouTuberHistory
+from ytdata.models import YouTuber, YouTuberHistory, YouTubeMovie
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from django.template import RequestContext
 from django.http import HttpResponse, Http404, HttpResponsePermanentRedirect
@@ -73,6 +73,13 @@ def yt_top_hundred_subs(request):
     top_hundred_subs = YouTuber.objects.filter(status=2).order_by('-youtube_subscribers')[:100]
     return render_to_response('pages/yt-top-hundred-subs.html',
                        {'top_hundred_subs':top_hundred_subs},
+                        context_instance=RequestContext(request))
+
+
+def yt_top_free_movies(request):
+    top_free_movies = YouTubeMovie.objects.all().order_by('-view_count')
+    return render_to_response('pages/yt-top-free-movies.html',
+                       {'top_free_movies':top_free_movies},
                         context_instance=RequestContext(request))
 
 
