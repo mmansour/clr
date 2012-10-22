@@ -14,14 +14,14 @@
 
 {% block extra_breadcrumb %}
 <li><a href="/youtube-stats/">YouTube Statistics</a><span class="divider">/</span></li>
-<li class="active">{% trans "Top Fifty Most Viewed YouTube Channels" %}</li>
+<li class="active">{% trans "Top 50 Most Popular Free Full Length Movies" %}</li>
 {% endblock %}
 
 {% block main %}
 
 
 <div id="movie-list">
-<h3>{% trans "YouTube Movies - Top 50 Most Popular Free Full Length Movies " %}</h3>
+<h3>{% trans "YouTube Movies - Top 50 Most Popular Free Full Length Movies" %}</h3>
 {% for m in top_free_movies %}
 <h4>{{ forloop.counter }}: {{ m.movie_title }}</h4>
 <img src="{{ m.movie_thumbmail_url }}" alt="{{ m.movie_title }}" />
