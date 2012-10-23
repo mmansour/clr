@@ -27,9 +27,8 @@ class Command(BaseCommand):
 #        pprint.pprint(movie.text)
         jrmovies = json.loads(movie.text)
 #        pprint.pprint(jrmovies)
-
-        print jrmovies['feed']['openSearch$totalResults']['$t']
-
+        
+#        print jrmovies['feed']['openSearch$totalResults']['$t']
         total_results = jrmovies['feed']['openSearch$totalResults']['$t']
         number_of_pages = float(total_results) / 50
         which_page = 0
@@ -84,23 +83,48 @@ class Command(BaseCommand):
                 except KeyError:
                     movie_desc = 'N/A'
 
+############### UPDATE MOVIES
+
+                try:
+                    the_movie = YouTubeMovie.objects.get(movie_title=m['media$group']['media$title']['$t'])
+                    the_movie.view_count=view_count[0]
+                    the_movie.voter_rated=voter_rating
+                    the_movie.number_of_voters=num_voters
+                    the_movie.comment_count=comment_count
+                    the_movie.save()
+                except YouTubeMovie.DoesNotExist:
+                    the_movie = YouTubeMovie(
+                        movie_title=m['media$group']['media$title']['$t'],
+                        movie_direct_url=movie_url,
+                        movie_youtube_url=m['link'][0]['href'],
+                        movie_thumbmail_url=movie_thumb,
+                        movie_parental_rating=parental_rating,
+                        movie_credits=movie_credits,
+                        movie_description=movie_desc,
+                        view_count=view_count[0],
+                        voter_rated=voter_rating,
+                        number_of_voters=num_voters,
+                        comment_count=comment_count
+                    )
+                    the_movie.save()
 
 
-                yt, created = YouTubeMovie.objects.get_or_create(
-                    movie_title=m['media$group']['media$title']['$t'],
-                    movie_direct_url=movie_url,
-                    movie_youtube_url=m['link'][0]['href'],
-                    movie_thumbmail_url=movie_thumb,
-                    movie_parental_rating=parental_rating,
-    #                    movie_restrictions=m['media$group']['media$restriction'][0]['$t'],
-    #                    movie_uploaded_date=m['media$group']['yt$uploaded'],
-                    movie_credits=movie_credits,
-                    movie_description=movie_desc,
-                    view_count=view_count[0],
-                    voter_rated=voter_rating,
-                    number_of_voters=num_voters,
-                    comment_count=comment_count
-                )
+############### GET OR CREATE FOR INIT
+#                yt, created = YouTubeMovie.objects.get_or_create(
+#                    movie_title=m['media$group']['media$title']['$t'],
+#                    movie_direct_url=movie_url,
+#                    movie_youtube_url=m['link'][0]['href'],
+#                    movie_thumbmail_url=movie_thumb,
+#                    movie_parental_rating=parental_rating,
+#    #                    movie_restrictions=m['media$group']['media$restriction'][0]['$t'],
+#    #                    movie_uploaded_date=m['media$group']['yt$uploaded'],
+#                    movie_credits=movie_credits,
+#                    movie_description=movie_desc,
+#                    view_count=view_count[0],
+#                    voter_rated=voter_rating,
+#                    number_of_voters=num_voters,
+#                    comment_count=comment_count
+#                )
 
                 print 'Created movie'
 
