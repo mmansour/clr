@@ -77,7 +77,7 @@ def yt_top_hundred_subs(request):
 
 
 def yt_top_free_movies(request):
-    top_free_movies = YouTubeMovie.objects.all().order_by('-view_count')
+    top_free_movies = YouTubeMovie.objects.all().order_by('-view_count')[:50]
     return render_to_response('pages/yt-top-free-movies.html',
                        {'top_free_movies':top_free_movies},
                         context_instance=RequestContext(request))
