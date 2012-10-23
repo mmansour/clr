@@ -108,24 +108,6 @@ class Command(BaseCommand):
                     )
                     the_movie.save()
 
-
-############### GET OR CREATE FOR INIT
-#                yt, created = YouTubeMovie.objects.get_or_create(
-#                    movie_title=m['media$group']['media$title']['$t'],
-#                    movie_direct_url=movie_url,
-#                    movie_youtube_url=m['link'][0]['href'],
-#                    movie_thumbmail_url=movie_thumb,
-#                    movie_parental_rating=parental_rating,
-#    #                    movie_restrictions=m['media$group']['media$restriction'][0]['$t'],
-#    #                    movie_uploaded_date=m['media$group']['yt$uploaded'],
-#                    movie_credits=movie_credits,
-#                    movie_description=movie_desc,
-#                    view_count=view_count[0],
-#                    voter_rated=voter_rating,
-#                    number_of_voters=num_voters,
-#                    comment_count=comment_count
-#                )
-
                 print 'Created movie'
 
         UpdateMostViewed(self)
