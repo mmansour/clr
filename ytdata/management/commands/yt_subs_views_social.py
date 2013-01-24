@@ -28,49 +28,59 @@ class Command(BaseCommand):
             
 #           ########## UPDATE DATE, SUBS, AND VIEWS
             stats_div = datasoup.findAll('div',{'class':'header-stats'})
-            stats_data = stats_div[0].findAll('span',text=True)
-            add_stats = YouTuber.objects.get(title=u.title)
-            add_stats.publish_date = datetime.datetime.utcnow().replace(tzinfo=utc)
-#            add_stats.publish_date = datetime.datetime.now()
-            add_stats.youtube_subscribers = int(stats_data[2].replace(',',''))
-            add_stats.youtube_total_uploaded_views = int(stats_data[8].replace(',',''))
-            add_stats.save()
+            try:
+                stats_data = stats_div[0].findAll('span',text=True)
+                add_stats = YouTuber.objects.get(title=u.title)
+                add_stats.publish_date = datetime.datetime.utcnow().replace(tzinfo=utc)
+    #            add_stats.publish_date = datetime.datetime.now()
+                add_stats.youtube_subscribers = int(stats_data[2].replace(',',''))
+                add_stats.youtube_total_uploaded_views = int(stats_data[8].replace(',',''))
+                add_stats.save()
 
-#           ########## GET SOCIAL LINKS
-            social_link_markup=datasoup.findAll('a',{'class':'yt-uix-redirect-link'})
-            social_data_dict[u.title] = [s['href'] for s in social_link_markup if exactMatch.findall(s['href'])]
+                social_link_markup=datasoup.findAll('a',{'class':'yt-uix-redirect-link'})
+                social_data_dict[u.title] = [s['href'] for s in social_link_markup if exactMatch.findall(s['href'])]
 
-        for k, v in social_data_dict.iteritems():
+                for k, v in social_data_dict.iteritems():
 
-            fblist = [i for i in v if 'facebook' in i]
-            if len(fblist) > 1 or not fblist:
-                pass
-            else:
-                for fblink in fblist:
-                    fburldb = YouTuber.objects.get(title=k)
-                    try:
-                        if not fburldb.facebook_verified:
-                            fburldb.facebook_url = fblink
-                    except Exception, e:
-                        fburldb.facebook_error = e
-                    finally:
-                        fburldb.save()
+                    fblist = [i for i in v if 'facebook' in i]
+                    if len(fblist) > 1 or not fblist:
+                        pass
+                    else:
+                        for fblink in fblist:
+                            fburldb = YouTuber.objects.get(title=k)
+                            try:
+                                if not fburldb.facebook_verified:
+                                    fburldb.facebook_url = fblink
+                            except Exception, e:
+                                fburldb.facebook_error = e
+                            finally:
+                                fburldb.save()
 
-            twitterlist = [t for t in v if 'twitter' in t]
-            if len(twitterlist) > 1 or not twitterlist:
-                pass
-            else:
-                for twitlink in twitterlist:
-                    twitterurldb = YouTuber.objects.get(title=k)
-                    try:
-                        if not twitterurldb.twitter_verified:
-                            twitterurldb.twitter_url = twitlink
-                    except Exception, e:
-                        twitterurldb.twitter_error = e
-                    finally:
-                        twitterurldb.save()
+                    twitterlist = [t for t in v if 'twitter' in t]
+                    if len(twitterlist) > 1 or not twitterlist:
+                        pass
+                    else:
+                        for twitlink in twitterlist:
+                            twitterurldb = YouTuber.objects.get(title=k)
+                            try:
+                                if not twitterurldb.twitter_verified:
+                                    twitterurldb.twitter_url = twitlink
+                            except Exception, e:
+                                twitterurldb.twitter_error = e
+                            finally:
+                                twitterurldb.save()
+
+                print "Got Stat {0}".format(u)
+                
+            except IndexError:
+                print 'Index Error for {0}'.format(u)
 
         print "Done getting stats and urls"
+
+#           ########## GET SOCIAL LINKS
+
+
+
 
 
 

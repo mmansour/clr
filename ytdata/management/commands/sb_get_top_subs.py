@@ -23,7 +23,9 @@ class Command(BaseCommand):
             if row_count > 2:
 ################# GET TOP 100 # OF SUBSCIBERS
                 yt, created = YouTuber.objects.get_or_create(title=str(row[2]))
-                print row[2]
+#                print row[2]
+                print row
+
         print top_100_page.headers
 
 

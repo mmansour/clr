@@ -5,9 +5,9 @@ from django.http import HttpResponse, Http404, HttpResponsePermanentRedirect
 
 
 def home(request):
-    top_three_most_subs = YouTuber.objects.filter(status=2).order_by('-youtube_subscribers')[:3]
-    top_three_most_viewed = YouTuber.objects.filter(status=2).order_by('-youtube_total_uploaded_views')[:3]
-    top_three_featured = YouTuber.objects.filter(status=2).filter(is_featured=True)[:3]
+    top_three_most_subs = YouTuber.objects.filter(status=2).exclude(youtube_subscribers=None).order_by('-youtube_subscribers')[:3]
+    top_three_most_viewed = YouTuber.objects.filter(status=2).exclude(youtube_subscribers=None).order_by('-youtube_total_uploaded_views')[:3]
+    top_three_featured = YouTuber.objects.filter(status=2).exclude(youtube_subscribers=None).filter(is_featured=True)[:3]
     return render_to_response('index.html',
                        {'top_three_most_subs':top_three_most_subs,
                         'top_three_most_viewed':top_three_most_viewed,
@@ -35,42 +35,42 @@ def yt_stats_landing(request):
 
 
 def yt_top_ten_viewed(request):
-    top_ten_viewed = YouTuber.objects.filter(status=2).order_by('-youtube_total_uploaded_views')[:10]
+    top_ten_viewed = YouTuber.objects.filter(status=2).exclude(youtube_total_uploaded_views=None).order_by('-youtube_total_uploaded_views')[:10]
     return render_to_response('pages/yt-top-ten-viewed-channels.html',
                        {'top_ten_viewed':top_ten_viewed},
                         context_instance=RequestContext(request))
 
 
 def yt_top_fifty_viewed(request):
-    top_fifty_viewed = YouTuber.objects.filter(status=2).order_by('-youtube_total_uploaded_views')[:50]
+    top_fifty_viewed = YouTuber.objects.filter(status=2).exclude(youtube_total_uploaded_views=None).order_by('-youtube_total_uploaded_views')[:50]
     return render_to_response('pages/yt-top-fifty-viewed-channels.html',
                        {'top_fifty_viewed':top_fifty_viewed},
                         context_instance=RequestContext(request))
 
 
 def yt_top_hundred_viewed(request):
-    top_hundred_viewed = YouTuber.objects.filter(status=2).order_by('-youtube_total_uploaded_views')[:100]
+    top_hundred_viewed = YouTuber.objects.filter(status=2).exclude(youtube_total_uploaded_views=None).order_by('-youtube_total_uploaded_views')[:100]
     return render_to_response('pages/yt-top-hundred-viewed-channels.html',
                        {'top_hundred_viewed':top_hundred_viewed},
                         context_instance=RequestContext(request))
 
 
 def yt_top_ten_subs(request):
-    top_ten_subs = YouTuber.objects.filter(status=2).order_by('-youtube_subscribers')[:10]
+    top_ten_subs = YouTuber.objects.filter(status=2).exclude(youtube_subscribers=None).order_by('-youtube_subscribers')[:10]
     return render_to_response('pages/yt-top-ten-subs.html',
                        {'top_ten_subs':top_ten_subs},
                         context_instance=RequestContext(request))
 
 
 def yt_top_fifty_subs(request):
-    top_fifty_subs = YouTuber.objects.filter(status=2).order_by('-youtube_subscribers')[:50]
+    top_fifty_subs = YouTuber.objects.filter(status=2).exclude(youtube_subscribers=None).order_by('-youtube_subscribers')[:50]
     return render_to_response('pages/yt-top-fifty-subs.html',
                        {'top_fifty_subs':top_fifty_subs},
                         context_instance=RequestContext(request))
 
 
 def yt_top_hundred_subs(request):
-    top_hundred_subs = YouTuber.objects.filter(status=2).order_by('-youtube_subscribers')[:100]
+    top_hundred_subs = YouTuber.objects.filter(status=2).exclude(youtube_subscribers=None).order_by('-youtube_subscribers')[:100]
     return render_to_response('pages/yt-top-hundred-subs.html',
                        {'top_hundred_subs':top_hundred_subs},
                         context_instance=RequestContext(request))
